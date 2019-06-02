@@ -1,17 +1,84 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <script src="components/loader.js"></script>
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Install latest Onsen UI (2.10.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
     <script>
+        ons.ready(function () {
+            var pullHook = document.getElementById('pull-hook');
+
+            pullHook.addEventListener('changestate', function (event) {
+                var message = '';
+
+                switch (event.state) {
+                    case 'initial':
+                        message = 'Pull to refresh';
+                        break;
+                    case 'preaction':
+                        message = 'Release';
+                        break;
+                    case 'action':
+                        message = 'Loading...';
+                        break;
+                }
+
+                pullHook.innerHTML = message;
+            });
+
+            pullHook.onAction = function (done) {
+                setTimeout(done, 1000);
+            };
+        });
     </script>
 </head>
+
 <body>
-	<br />
-    This is a template for Monaca app.
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Lists</div>
+        </ons-toolbar>
+
+        <ons-pull-hook id="pull-hook" threshold-height="-1">
+            Pull to refresh
+        </ons-pull-hook>
+
+        <!-- Add list elements so that this ons-page will be scrollable -->
+        <ons-list>
+            <ons-list-item>Item 1</ons-list-item>
+            <ons-list-item>Item 2</ons-list-item>
+            <ons-list-item>Item 3</ons-list-item>
+            <ons-list-item>Item 4</ons-list-item>
+            <ons-list-item>Item 5</ons-list-item>
+            <ons-list-item>Item 6</ons-list-item>
+            <ons-list-item>Item 7</ons-list-item>
+            <ons-list-item>Item 8</ons-list-item>
+            <ons-list-item>Item 9</ons-list-item>
+            <ons-list-item>Item 10</ons-list-item>
+            <ons-list-item>Item 11</ons-list-item>
+            <ons-list-item>Item 12</ons-list-item>
+            <ons-list-item>Item 13</ons-list-item>
+            <ons-list-item>Item 14</ons-list-item>
+            <ons-list-item>Item 15</ons-list-item>
+            <ons-list-item>Item 16</ons-list-item>
+            <ons-list-item>Item 17</ons-list-item>
+            <ons-list-item>Item 18</ons-list-item>
+            <ons-list-item>Item 19</ons-list-item>
+            <ons-list-item>Item 20</ons-list-item>
+        </ons-list>
+    </ons-page>
+
 </body>
+
 </html>
